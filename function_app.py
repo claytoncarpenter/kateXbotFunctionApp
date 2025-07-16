@@ -19,6 +19,7 @@ def kateXBot(myTimer: func.TimerRequest) -> None:
 
 
         import requests
+        from requests_oauthlib import OAuth1
         from langchain.chat_models import init_chat_model
         from langgraph.prebuilt import ToolNode
         from typing_extensions import TypedDict
@@ -27,10 +28,9 @@ def kateXBot(myTimer: func.TimerRequest) -> None:
         from langgraph.graph.message import add_messages
         from langgraph.prebuilt import ToolNode, tools_condition
         from typing import Annotated
-
         import datetime
-
         from langchain_community.document_loaders import WebBaseLoader
+        
         os.environ["LANGCHAIN_TRACING_V2"] = "true"
 
         llm = init_chat_model("openai:gpt-4.1")
@@ -80,10 +80,6 @@ def kateXBot(myTimer: func.TimerRequest) -> None:
             print("datetime tool called!")
             x = str(datetime.datetime.now())
             return x
-
-
-        import requests
-        from requests_oauthlib import OAuth1
 
         @tool(return_direct=True)
         def post_to_x(content: str = None) -> str:
