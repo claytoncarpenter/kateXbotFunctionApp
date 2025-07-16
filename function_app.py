@@ -1,6 +1,6 @@
 import logging
 import azure.functions as func
-
+import os
 
 app = func.FunctionApp()
 
@@ -17,9 +17,8 @@ def kateXBot(myTimer: func.TimerRequest) -> None:
 
         logging.info('Python timer trigger function executed.')
 
-        import os
-        import requests
 
+        import requests
         from langchain.chat_models import init_chat_model
         from langgraph.prebuilt import ToolNode
         from typing_extensions import TypedDict
